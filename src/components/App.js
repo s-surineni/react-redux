@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom/cjs/react-router-dom.min";
+import { Route } from "react-router-dom";
 import React from "react";
 import HomePage from "./home/HomePage";
 import AboutPage from "./about/AboutPage";
