@@ -25,8 +25,10 @@ export function loadCourses() {
 export function saveCourse(course) {
     return function (dispatch, getState) {
         return courseApi.saveCourse(course).then(savedCourse => {
+            console.log("ironman", savedCourse);
             course.id ? dispatch(updateCourseSuccess(savedCourse)) : dispatch(createCourseSuccess(savedCourse));
         }).catch(error => {
+            console.log("ironman", error);
             throw error;
         });
     }

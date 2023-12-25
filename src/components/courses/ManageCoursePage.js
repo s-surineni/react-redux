@@ -5,7 +5,7 @@ import { loadAuthors } from '../../redux/actions/authorActions';
 import PropTypes from 'prop-types';
 import { newCourse } from '../../../tools/mockData';
 import CourseForm from './CourseForm';
-function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, ...props }) {
+function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCourse, ...props }) {
     const [course, setCourse] = useState({ ...props.course });
     const [errors, setErrors] = useState({});
     useEffect(() => {
