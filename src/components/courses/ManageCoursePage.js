@@ -5,7 +5,7 @@ import { loadAuthors } from '../../redux/actions/authorActions';
 import PropTypes from 'prop-types';
 import { newCourse } from '../../../tools/mockData';
 import CourseForm from './CourseForm';
-function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCourse, ...props }) {
+function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCourse, history, ...props }) {
     const [course, setCourse] = useState({ ...props.course });
     const [errors, setErrors] = useState({});
     useEffect(() => {
@@ -31,7 +31,9 @@ function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCour
 
     function handleSave(event) {
         event.preventDefault();
-        saveCourse(course);
+        saveCourse(course).then(() => {
+            history.push('/courses');
+        });
     }
 
     return <CourseForm course={course} authors={authors} errors={errors} onChange={handleChange} onSave={handleSave} />
@@ -44,7 +46,8 @@ ManageCoursePage.propTypes = {
     authors: PropTypes.array.isRequired,
     loadCourses: PropTypes.func.isRequired,
     loadAuthors: PropTypes.func.isRequired,
-    saveCourse: PropTypes.func.isRequired
+    saveCourse: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
 }
 function mapStateToProps(state) {
     return {
