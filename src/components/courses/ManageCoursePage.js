@@ -9,6 +9,7 @@ import { getCourses } from '../../api/courseApi';
 function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCourse, history, ...props }) {
     const [course, setCourse] = useState({ ...props.course });
     const [errors, setErrors] = useState({});
+    const [saving, setSaving] = useState(false);
     useEffect(() => {
         if (courses.length === 0) {
             loadCourses().catch(error => {
@@ -34,12 +35,14 @@ function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCour
 
     function handleSave(event) {
         event.preventDefault();
+        setSaving(true);
         saveCourse(course).then(() => {
             history.push('/courses');
         });
     }
 
-    return <CourseForm course={course} authors={authors} errors={errors} onChange={handleChange} onSave={handleSave} />
+    return <CourseForm course={course} authors={authors} errors={errors} 
+    saving={saving} onChange={handleChange} onSave={handleSave} />
 
 }
 
