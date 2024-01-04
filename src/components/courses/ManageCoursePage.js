@@ -40,6 +40,9 @@ function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCour
         saveCourse(course).then(() => {
             toast.success("Course saved");
             history.push('/courses');
+        }).catch(error => {
+            setSaving(false);
+            setErrors({ onSave: error.message });
         });
     }
 
