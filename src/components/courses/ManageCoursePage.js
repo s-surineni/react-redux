@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { newCourse } from '../../../tools/mockData';
 import CourseForm from './CourseForm';
 import { getCourses } from '../../api/courseApi';
+import { toast } from 'react-toastify';
 function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCourse, history, ...props }) {
     const [course, setCourse] = useState({ ...props.course });
     const [errors, setErrors] = useState({});
@@ -37,6 +38,7 @@ function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCour
         event.preventDefault();
         setSaving(true);
         saveCourse(course).then(() => {
+            toast.success("Course saved");
             history.push('/courses');
         });
     }
