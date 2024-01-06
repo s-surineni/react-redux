@@ -28,11 +28,13 @@ class CoursesPage extends React.Component {
         }
     }
 
-    handleDeleteCourse =  (course) => {
+    handleDeleteCourse = async (course) => {
         toast.success("Course deleted");
-        this.props.actions.deleteCourse(course).catch(error => {
+        try {
+            await this.props.actions.deleteCourse(course)
+        } catch (error) {
             toast.error("Delete failed. " + error.message, { autoClose: false });
-        });
+        }
     }
     render() {
         return (
@@ -40,13 +42,13 @@ class CoursesPage extends React.Component {
                 {this.state.redirectToAddCoursePage && <Redirect to='/course' />}
                 <h2>Courses</h2>
                 {this.props.loading ? <Spinner /> : (
-                    <>   
+                    <>
                         <button
-                    style={{ marginBottom: 20 }}
-                    className='btn btn-primary add-course'
-                    onClick={() => this.setState({ redirectToAddCoursePage: true })}
-                >Add Course</button>
-                <CourseList onDeleteClick={this.handleDeleteCourse} courses={this.props.courses} />
+                            style={{ marginBottom: 20 }}
+                            className='btn btn-primary add-course'
+                            onClick={() => this.setState({ redirectToAddCoursePage: true })}
+                        >Add Course</button>
+                        <CourseList onDeleteClick={this.handleDeleteCourse} courses={this.props.courses} />
                     </>
                 )}
 
