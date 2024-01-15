@@ -44,11 +44,11 @@ class CoursesPage extends React.Component {
                 {this.props.loading ? <Spinner /> : (
                     <>
                         <button
-                            style={{ marginBottom: 20 }}
-                            className='btn btn-primary add-course'
-                            onClick={() => this.setState({ redirectToAddCoursePage: true })}
-                        >Add Course</button>
-                        <CourseList onDeleteClick={this.handleDeleteCourse} courses={this.props.courses} />
+                    style={{ marginBottom: 20 }}
+                    className='btn btn-primary add-course'
+                    onClick={() => this.setState({ redirectToAddCoursePage: true })}
+                >Add Course</button>
+                <CourseList onDeleteClick={this.handleDeleteCourse} courses={this.props.courses} />
                     </>
                 )}
 
@@ -75,6 +75,11 @@ function mapStateToProps(state) {
         authors: state.authors,
         loading: state.apiCallsInProgress > 0
     };
+}
+
+handleDeleteCourse = (course) => {
+    toast.success("Course deleted");
+    this.props.actions.deleteCourse(course);
 }
 
 function mapDispatchToProps(dispatch) {
