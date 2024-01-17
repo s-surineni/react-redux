@@ -77,10 +77,6 @@ function mapStateToProps(state) {
     };
 }
 
-handleDeleteCourse = (course) => {
-    toast.success("Course deleted");
-    this.props.actions.deleteCourse(course);
-}
 
 function mapDispatchToProps(dispatch) {
     return {

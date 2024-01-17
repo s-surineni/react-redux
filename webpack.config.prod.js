@@ -19,7 +19,7 @@ module.exports = {
         new webpackBundleAnalyzer.BundleAnalyzerPlugin({ analyzerMode: 'static' }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css'
-        })
+        }),
         new webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
             "process.env.API_URL": JSON.stringify("http://localhost:3001"),
@@ -63,7 +63,7 @@ module.exports = {
                     {
                         loader: 'postcss-loader',
                         options: {
-                            postCssOptions: {
+                            postcssOptions: {
                                 plugins: [
                                     () => [
                                         require('cssnano')
