@@ -7,11 +7,19 @@
     "prestart:api": "node tools/createMockDb.js",
     "start:api": "node tools/apiServer.js",
     "test:ci": "jest --passWithNoTests",
+    "test": "jest --watch",
     "clean:build": "rimraf ./build && mkdir build",
     "prebuild": "run-p clean:build test:ci",
     "build": "webpack --config webpack.config.prod.js",
     "postbuild": "run-p start:api serve:build",
     "serve:build": "http-server ./build"
+  },
+  "jest": {
+    "setupFiles": ["./tools/testSetup.js"],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/tools/styleMock.js"
+    }
   },
   "dependencies": {
     "bootstrap": "5.0.2",
