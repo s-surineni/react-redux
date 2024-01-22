@@ -7,7 +7,7 @@ import { newCourse } from '../../../tools/mockData';
 import CourseForm from './CourseForm';
 import { getCourses } from '../../api/courseApi';
 import { toast } from 'react-toastify';
-function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCourse, history, ...props }) {
+export function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCourse, history, ...props }) {
     const [course, setCourse] = useState({ ...props.course });
     const [errors, setErrors] = useState({});
     const [saving, setSaving] = useState(false);
@@ -37,7 +37,7 @@ function ManageCoursePage({ courses, authors, loadAuthors, loadCourses, saveCour
     function formIsValid() {
         const { title, authorId, category } = course;
         const errors = {};
-        if (!title) errors.title = "Title is required";
+        if (!title) errors.title = "Title is required.";
         if (!authorId) errors.author = "Author is required";
         if (!category) errors.category = "Category is required";
         setErrors(errors);
